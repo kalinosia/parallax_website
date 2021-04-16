@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Parallax</title>
+  <meta name="description" content="Parallax">
+  <meta name="author" content="Kalinowska">
+
+  <link rel="stylesheet" href="style.css">
+
+  
+</head>
+
+<body>
+
+    <section id="area">
+        <h1>Kalinowska</h1>
+<!---
+        <img src="img/asteroid.svg" class="layer" data-speed="-5" > 
+        <img src="img/astronaut(1).svg" class="layer" data-speed="2"  >
+        <img src="img/jupiter.svg" class="layer" data-speed="5"  >
+        <img src="img/uranus.svg" class="layer" data-speed="3" >
+        <img src="img/satellite.svg" class="layer" data-speed="-8"  >
+        <img src="img/planets.svg" class="layer" data-speed="9"  >
+        <img src="img/astronaut(2).svg" class="layer" data-speed="4"  >
+        <img src="img/astronaut(1).svg" class="layer" data-speed="-3"  >
+        <img src="img/planets.svg" class="layer" data-speed="7"  >
+
+-->   
+    </section>
+    
+
+
+
+    <footer>
+    <a href='https://www.freepik.com/vectors/background'>Background vector created by freepik - www.freepik.com</a>
+
+    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
+
+    <script type="text/javascript">
+   
+    var pics = [
+    "img/asteroid.svg" ,
+    "img/astronaut(1).svg",
+    "img/jupiter.svg",
+    "img/uranus.svg",
+    "img/satellite.svg",
+    "img/planets.svg",
+    "img/astronaut(2).svg"
+    
+  ];
+/*
+  var img = '';
+  for(ii=0; ii<pics.length; ii++) {
+    positiontop = parseInt(Math.random()*90);
+    positionright = parseInt(Math.random()*90);
+    zindex = ii;
+    dataspeed=parseInt(Math.random()*18-9);
+
+    img += '<img src="'+pics[ii] + '" class="'+'layer" data-speed='+ dataspeed + '" style="top: '+positiontop+'vh;'+'left: '+positionright+'vw;'+' z-index: '+zindex+';">';
+  }
+
+    
+  //document.getElementById('area').innerHTML= img;
+        //(Math.floor(Math.random() * 90))hv;
+ 
+ */       
+window.onload=function(){
+    for(ii=0; ii<pics.length; ii++) {
+        var elem = document.createElement("img");
+        elem.setAttribute("src", pics[ii]);
+        elem.setAttribute("style", "top: "+parseInt(Math.random()*90)+"vh;"+"left: " +parseInt(Math.random()*90)+"vw;");
+        //elem.setAttribute("style", "left: " +parseInt(Math.random()*90)+";");
+        elem.setAttribute("class", "layer");
+        elem.setAttribute("data-speed", parseInt(Math.random()*18-9));
+        document.getElementById("area").appendChild(elem);
+    }
+}  
+  
+//----------------------------------------------------------------
+        document.addEventListener("mousemove", parallax);
+        function parallax(e){
+            this.querySelectorAll('.layer').forEach(layer => {
+                const speed = layer.getAttribute('data-speed')
+        
+                const x =(window.innerWidth - e.pageX*speed)/100
+                const y = (window.innerHeight - e.pageY*speed)/100
+
+                layer.style.transform = `translateX(${x}px) translateY(${y}px)`
+        })
+    }
+    
+
+    
+    </script>
+    <noscript>
+        <style type="text/css">
+            .pagecontainer {display:none;}
+        </style>
+        <div class="noscriptmsg">
+        You don't have javascript enabled.  Good luck with that.
+        </div>
+    </noscript>
+    
+</body>
+</html>
